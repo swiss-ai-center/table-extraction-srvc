@@ -91,7 +91,8 @@ class MyService(Service):
         image = cv2.imdecode(np.frombuffer(image_bytes, np.uint8), 1)
         image_pil = Image.fromarray(image)
 
-        pipeline = TableExtractionPipeline(str_device="cpu", det_device="cpu",
+        pipeline = TableExtractionPipeline(str_device="cpu",
+                                           det_device="cpu",
                                            str_model_path="model/TATR-v1.1-All-msft.pth")
         # Temporary directory and zip buffer setup
         with tempfile.TemporaryDirectory():
