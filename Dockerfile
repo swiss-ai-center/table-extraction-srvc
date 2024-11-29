@@ -2,8 +2,7 @@
 FROM python:3.11
 
 # Install all required packages to run the model
-# TODO: 1. Add any additional packages required to run your model
-# RUN apt update && apt install --yes package1 package2 ...
+RUN apt update && apt install --yes ffmpeg libsm6 libxext6
 
 # Work directory
 WORKDIR /app
@@ -14,6 +13,12 @@ COPY ./requirements-all.txt .
 
 # Install dependencies
 RUN pip install --requirement requirements.txt --requirement requirements-all.txt
+
+# Create the model directory
+RUN mkdir -p src/model
+
+# Download the model file from Hugging Face
+RUN wget -O src/model/TATR-v1.1-All-msft.pth https://huggingface.co/bsmock/TATR-v1.1-All/resolve/main/TATR-v1.1-All-msft.pth
 
 # Copy sources
 COPY src src
