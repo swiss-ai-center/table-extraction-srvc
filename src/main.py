@@ -25,7 +25,6 @@ settings = get_settings()
 
 
 class MyService(Service):
-    # TODO: 2. CHANGE THIS DESCRIPTION
     """
     My service model
     """
